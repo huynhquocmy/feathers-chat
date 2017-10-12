@@ -1,8 +1,8 @@
-// Initializes the `chat` service on path `/chat`
+// Initializes the `messages` service on path `/messages`
 const createService = require('feathers-nedb');
-const createModel = require('../../models/chat.model');
-const hooks = require('./chat.hooks');
-const filters = require('./chat.filters');
+const createModel = require('../../../models/chat-messages.model');
+const hooks = require('./chat-messages.hooks');
+const filters = require('./chat-messages.filters');
 
 module.exports = function () {
   const app = this;
@@ -10,16 +10,16 @@ module.exports = function () {
   const paginate = app.get('paginate');
 
   const options = {
-    name: 'chat',
+    name: 'chat-messages',
     Model,
     paginate
   };
 
   // Initialize our service with any options it requires
-  app.use('/chat', createService(options));
+  app.use('/chat-messages', createService(options));
 
   // Get our initialized service so that we can register hooks and filters
-  const service = app.service('chat');
+  const service = app.service('chat-messages');
 
   service.hooks(hooks);
 
